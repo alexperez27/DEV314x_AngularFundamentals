@@ -10,18 +10,17 @@ export class GitSearchService {
       [query: string]: GitSearch
     }> = [];
 
-  private http: HttpClient
+  private http: HttpClient;
   constructor(http: HttpClient) {
-    this.http = http
+    this.http = http;
   }
 
-  gitSearch = (query: string) => {
+  gitSearch = (query: string, page: number) => {
     let promise = new Promise((resolve, reject) => {
       if (this.cachedValues[query]) {
-            resolve(this.cachedValues[query])
-        }
-        else {
-          this.http.get('https://api.github.com/search/repositories?q=' + query)
+            resolve(this.cachedValues[query]);
+        } else {
+          this.http.get('https://api.github.com/search/repositories?q=' + query + '&page=' + page + '&per_page=5')
           .toPromise()
           .then( (response) => {
             resolve(response as GitSearch)
