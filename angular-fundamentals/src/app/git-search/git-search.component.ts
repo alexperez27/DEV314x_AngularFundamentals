@@ -10,28 +10,29 @@ import { GitUsers } from '../git-users';
 })
 export class GitSearchComponent implements OnInit {
   searchResults: GitSearch;
+  searchQuery: string;
 
   constructor(private GitSearchService: GitSearchService) { }
 
   ngOnInit() {
     this.GitSearchService.gitSearch('angular js').then( (response) => {
       this.searchResults = <GitSearch> response;
-      alert('Total Libraries Found:' + (<GitSearch> response).total_count);
+      //alert('Total Libraries Found:' + (<GitSearch> response).total_count);
     }, (error) => {
       alert('Error Libraries: ' + error.statusText);
     });
 
     this.GitSearchService.gitUserSearch('tom').then( (response) => {
-      alert('Total Users Found:' + (<GitUsers> response).total_count);
+      //alert('Total Users Found:' + (<GitUsers> response).total_count);
     }, (error) => {
       alert('Error Users: ' + error.statusText);
     });
   }
 
-  gitSearch = (query: string) => {
-    this.GitSearchService.gitSearch(query).then( (response) => {
+  gitSearch = () => {
+    this.GitSearchService.gitSearch(this.searchQuery).then( (response) => {
       this.searchResults = <GitSearch> response;
-      alert('Total Libraries Found:' + (<GitSearch> response).total_count);
+      //alert('Total Libraries Found:' + (<GitSearch> response).total_count);
     }, (error) => {
       alert('Error Libraries: ' + error.statusText);
     });
