@@ -8,6 +8,7 @@ import { GitSearchService } from './git-search.service';
 import { GitSearchComponent } from './git-search/git-search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { NoSpecialCharsDirective } from './no-special-chars.directive';
 
 const appRoutes: Routes = [
   { path: '',
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     AppComponent,
     GitSearchComponent,
     NotFoundComponent,
-    HomePageComponent
+    HomePageComponent,
+    NoSpecialCharsDirective
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    ReactiveFormsModule
   ],
   providers: [GitSearchService],
   bootstrap: [AppComponent]

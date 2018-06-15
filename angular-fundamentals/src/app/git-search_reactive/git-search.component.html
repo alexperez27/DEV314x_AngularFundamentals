@@ -1,14 +1,10 @@
 <h3>{{title}} - {{displayQuery}}</h3>
-<form (ngSubmit)="sendQuery()" #myForm="ngForm">
+<form (ngSubmit)="sendQueryReactiveForm()" [formGroup]="form">
   <!--<input name="query" placeholder="Enter Search Here" [(ngModel)]="searchQuery" />-->
   <div *ngFor="let key of modelKeys">
-    {{key}}
-    <input name="{{key}}" placeholder="Enter {{key}} Here" [(ngModel)]="model[key]" required *ngIf="key === 'q'" appNoSpecialChars />
-    <input name="{{key}}" placeholder="Enter {{key}} Here" [(ngModel)]="model[key]" minlength='2' maxlength='4' *ngIf="key === 'stars'" appNoSpecialChars />
-    <input name="{{key}}" placeholder="Enter {{key}} Here" [(ngModel)]="model[key]" *ngIf="key !== 'q' && key !== 'stars'" appNoSpecialChars />
+    <!--{{key}}<input name="{{key}}" placeholder="Enter {{key}} Here" [(ngModel)]="model[key]" />-->
+    {{key}}<input placeholder="Enter {{key}} Here" formControlName="{{key}}" />
 </div>
-
- 
   <button type="submit" [disabled]="!form.valid">Submit</button>  
 </form>
 
