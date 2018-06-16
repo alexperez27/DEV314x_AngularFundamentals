@@ -73,6 +73,14 @@ export class GitSearchComponent implements OnInit {
     });
   }
 
+  gitSearchObservable = () => {
+    this.GitSearchService.gitSearchObservable(this.searchQuery, this.currentPage).subscribe( (response) => {
+      this.searchResults = <GitSearch> response;
+    }, (error) => {
+      alert('Error Libraries: ' + error.statusText);
+    });
+  }
+
   gitSearch = () => {
     this.GitSearchService.gitSearch(this.searchQuery, this.currentPage).then( (response) => {
       this.searchResults = <GitSearch> response;
